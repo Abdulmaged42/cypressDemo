@@ -76,10 +76,7 @@ And(/^get current url$/, () => {
         cy.log("currentUrl ", currentUrl)
     })
 })
-Given(/^open accounts to login$/, () => {
-    cy.log("currentUrl ", currentUrl)
-    cy.visit(currentUrl)
-})
+
 When(/^click on "([^"]*)"$/, (textValue) => {
 
 

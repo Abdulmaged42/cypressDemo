@@ -19,3 +19,9 @@ Feature: Deals Page
             | country |
             | Egypt   |
             | Nigeria |
+
+    Scenario: verify the expiration date functionality
+        Given click on "Deals & Merchant"
+        And  I verify the appearance of the text "Deals & Merchant"
+        When open "Deals"
+        Then validate the expiration date

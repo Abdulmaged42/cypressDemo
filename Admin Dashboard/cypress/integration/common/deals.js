@@ -1,7 +1,8 @@
 import { Given, When, And, Then } from 'cypress-cucumber-preprocessor/steps';
 import 'cypress-if'
 var expectedCountry
-
+var date = new Date();
+global.today = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
 And(/^open "([^"]*)"$/, (page) => {
     switch (page) {
         case 'Merchant':
@@ -75,3 +76,20 @@ function formatDate(date) {
 
     return [year, month, day].join('-');
 }
+Then(/^validate the expiration date$/, () => {
+    cy.get('.css-j6p7hn-MuiStack-root > button').each(element => {
+        element.click()
+
+        cy.xpath(`//tbody/tr/td[8]`).each(el => {
+            var endDate = el.text()
+            cy.log("endDate ", endDate)
+            var fulldate = endDate.split('at')
+            cy.log("fulldate ", fulldate[0])
+            if (fulldate[0] < today) {
+                cy.xpath(`//td[contains(text(),'${endDate}')]/following-sibling::td[1]`).invoke('text').should('contains', 'Expired')
+            }
+
+        })
+
+    })
+})
