@@ -19,21 +19,20 @@ And(/^open "([^"]*)"$/, (page) => {
 
 })
 And(/^select country "([^"]*)"$/, (country) => {
-    var locator
+
     if (country == 'Egypt') {
-        locator = 2
+        cy.xpath(`(//span[contains(text(),'${country}')])[2]`).click({ force: true })
     }
     else {
-        locator = 1
+        cy.xpath(`(//span[contains(text(),'${country}')])[1]`).click()
     }
-    cy.xpath(`(//span[contains(text(),'${country}')])[${locator}]`).click({ multiple: true })
+
     expectedCountry = country
 })
 
 Then(/^verify the returned countries$/, () => {
 
     do {
-
         cy.wait(2000)
         paginate()
     } while (cy.xpath(`//button[contains(text(),'Next')]`)

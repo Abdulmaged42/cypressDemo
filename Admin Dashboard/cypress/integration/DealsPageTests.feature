@@ -13,6 +13,7 @@ Feature: Deals Page
         And  I verify the appearance of the text "Deals & Merchant"
         And open "Deals"
         And click on "country-code-dropdown" by "id" locator
+        And I wait for 3 second
         When select country "<country>"
         Then verify the returned countries
         Examples:

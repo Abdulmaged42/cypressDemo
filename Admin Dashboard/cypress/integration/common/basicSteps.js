@@ -104,9 +104,9 @@ function fill_field_with(row) {
 
                 cy.get(`#${field}`).type(randomText)
             }
-            else if (value === 'randomFirstName') {
+            else if (value === 'randomArName') {
 
-                cy.get(`#${field}`).type(randomText1)
+                cy.get(`#${field}`).type('محل' + randomNumber)
             }
             else if (value === 'randomLastName') {
 
