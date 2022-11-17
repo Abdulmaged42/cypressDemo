@@ -18,3 +18,4 @@ Feature: Categories Page
             | name-en | text | random       |
             | name-ar | text | randomArName |
         And click on create category
+        Then verify the appearnce of the new category at the list

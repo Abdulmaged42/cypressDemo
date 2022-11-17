@@ -1,6 +1,6 @@
 import { Given, When, And, Then } from 'cypress-cucumber-preprocessor/steps';
 import 'cypress-if'
-var expectedCountry
+var expectedCountry = ''
 var date = new Date();
 global.today = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
 And(/^open "([^"]*)"$/, (page) => {
@@ -19,12 +19,12 @@ And(/^open "([^"]*)"$/, (page) => {
 
 })
 And(/^select country "([^"]*)"$/, (country) => {
-
-    if (country == 'Egypt') {
-        cy.xpath(`(//span[contains(text(),'${country}')])[2]`).click({ force: true })
+    cy.get('.css-dhk5m2-MuiStack-root > .MuiFormControl-root > .MuiInputBase-root').click()
+    if (country === 'Egypt') {
+        cy.get('.Mui-selected > .css-w4z10b-MuiStack-root > span').click()
     }
     else {
-        cy.xpath(`(//span[contains(text(),'${country}')])[1]`).click()
+        cy.get('[tabindex="-1"] > .css-w4z10b-MuiStack-root > span').click()
     }
 
     expectedCountry = country
